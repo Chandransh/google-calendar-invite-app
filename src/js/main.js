@@ -15,7 +15,7 @@ const rootElement = document.getElementById('app');
 let ComponentEl;
 
 if (process.env.NODE_ENV !== 'production') {
-  const DevTools = require('./containers/DevTools').default;
+  //const DevTools = require('./containers/DevTools').default;
 
   // If using routes
   ComponentEl = (
