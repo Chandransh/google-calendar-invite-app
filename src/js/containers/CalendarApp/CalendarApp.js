@@ -3,28 +3,29 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import './CalendarApp.scss';
-import * as ItemList from '../../reducers/itemList';
+// import * as ItemList from '../../reducers/itemList';
 
-import LoginBox from '../../components/LoginBox/LoginBox';
+import LoginButton from '../../components/LoginButton/LoginButton';
 
 class CalendarApp extends Component {
-  render () {
-    const {itemList, ItemList} = this.props;
+  render() {
     return (
       <div className="container">
-        <h1>Login to start inviting people now</h1>
-        <LoginBox/>
+        <div className="center-block">
+          <h1>Login to start inviting people now</h1>
+          <LoginButton/>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  itemList: state.itemList
+  // itemList: state.itemList
 });
 
 const mapActionToProps = (dispatch) => ({
-  ItemList: bindActionCreators(ItemList, dispatch)
+  // ItemList: bindActionCreators(ItemList, dispatch)
 });
 
 export default connect(
