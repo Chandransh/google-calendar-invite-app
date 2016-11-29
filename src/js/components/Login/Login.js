@@ -8,11 +8,11 @@ import {browserHistory} from 'react-router';
 
 import ReactBigCalendar from 'react-big-calendar';
 
-import './LoginButton.css';
+import './Login.css';
 import * as EventsList from '../../reducers/eventsList.js';
 import Helpers from '../../utils/helpers';
 
-class LoginButton extends Component {
+class Login extends Component {
   componentWillMount() {
     Helpers.loadScript("https://apis.google.com/js/client.js");
   }
@@ -107,9 +107,6 @@ class LoginButton extends Component {
   }
 }
 
-LoginButton.propTypes = {
-};
-
 const mapStateToProps = (state) => ({
   eventsList: state.eventsList
 });
@@ -121,4 +118,4 @@ const mapActionToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapActionToProps
-)(LoginButton);
+)(Login);
