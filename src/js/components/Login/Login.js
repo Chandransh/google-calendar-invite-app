@@ -74,7 +74,7 @@ class Login extends Component {
 
         if (events.length > 0) {
           EventsList.updateState(events);
-          browserHistory.push('/events')
+          browserHistory.push('/events');
         } else {
           appendPre('No upcoming events found.');
         }
@@ -89,7 +89,7 @@ class Login extends Component {
      */
     function appendPre(message) {
       var pre = document.getElementById('output');
-      var textContent = document.createTextNode(message + '\n');
+      var textContent = document.createTextNode('\n' + message + '\n');
       pre.appendChild(textContent);
     }
 
