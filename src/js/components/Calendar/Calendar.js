@@ -32,7 +32,7 @@ class Calendar extends Component {
       let isAllDayEvent = moment(eventsList.data[i].end.date).diff(eventsList.data[i].start.date, 'days') === 1;
 
       eventsData.push({
-        'end' : isAllDayEvent ? moment(eventsList.data[i].end.date).subtract(1, 'seconds') : eventsList.data[i].end.date,
+        'end' : isAllDayEvent ? moment(eventsList.data[i].end.date).subtract(1, 'seconds') : eventsList.data[i].end.date, //1 second is subtracted to exclude next day; overrides default include behaviour of ReactBigCalendar
         'start' : eventsList.data[i].start.date,
         'title' : eventsList.data[i].summary,
         'allDay' : isAllDayEvent
