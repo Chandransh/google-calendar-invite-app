@@ -6,8 +6,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
 
-import ReactBigCalendar from 'react-big-calendar';
-
 import './Login.css';
 import * as EventsList from '../../reducers/eventsList.js';
 import Helpers from '../../utils/helpers';
@@ -19,11 +17,10 @@ class Login extends Component {
 
   render() {
     const {EventsList} = this.props;
-    const _self = this;
 
     var CLIENT_ID = '873819743128-k24cs08sd7p6obn6cc44151taun99rs5.apps.googleusercontent.com';
 
-    var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+    var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
     /**
      * Handle response from authorization server.
