@@ -1,9 +1,9 @@
 .calendar-container {
-    height: 500px;
+    height: 500px; /*required due to react-big-calendar package*/
 }
 
 .invite-container {
-    min-width: 600px;
+    min-width: 500px;
     display: inline-block;
     background: #fff;
     padding: 20px;
@@ -13,7 +13,6 @@
     clear: both;
 }
 #invite-form>label {
-    padding: 10px 0 0;
     font-weight: bold;
 }
 #invite-form>input {
@@ -22,6 +21,7 @@
     border: 1px solid #000;
     outline: none;
     padding: 0 10px;
+    margin: 0 0 10px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -31,4 +31,19 @@
 }
 #invite-form>input[type="submit"] {
     margin: 20px 0 10px;
+}
+#invite-form>textarea {
+    width: 100%;
+    min-height: 85px;
+    border: 1px solid #000;
+    outline: none;
+    padding: 5px 10px;
+    margin: 0;
+    resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#invite-form>i { /*targets sentence below textarea*/
+    float: left;
 }

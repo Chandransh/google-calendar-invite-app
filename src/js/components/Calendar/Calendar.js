@@ -95,6 +95,10 @@ class Calendar extends Component {
                      value={this.state.selectedDateData.end}
               />
               <br/>
+              <label htmlFor="event-attendees">Attendees' emails</label>
+              <textarea id="event-attendees"></textarea>
+              <i>Note: Use comma separated emails for inviting multiple people.</i>
+              <br/>
               <input type="submit"
                      value="Send Invite"
                      className="btn btn-primary"/>
