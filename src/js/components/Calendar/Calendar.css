@@ -1,3 +1,34 @@
 .calendar-container {
     height: 500px;
 }
+
+.invite-container {
+    min-width: 600px;
+    display: inline-block;
+    background: #fff;
+    padding: 20px;
+}
+#invite-form>label, #invite-form>input {
+    float: left;
+    clear: both;
+}
+#invite-form>label {
+    padding: 10px 0 0;
+    font-weight: bold;
+}
+#invite-form>input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #000;
+    outline: none;
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#invite-form>input:disabled {
+    cursor: not-allowed;
+}
+#invite-form>input[type="submit"] {
+    margin: 20px 0 10px;
+}
