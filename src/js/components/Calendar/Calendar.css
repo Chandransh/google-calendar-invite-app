@@ -31,6 +31,7 @@
 }
 #invite-form>input[type="submit"] {
     margin: 20px 0 10px;
+    border: 0;
 }
 #invite-form>textarea {
     width: 100%;
