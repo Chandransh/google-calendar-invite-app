@@ -14,6 +14,7 @@ import moment from 'moment';
 
 import * as EventsList from '../../reducers/eventsList';
 import Modal from '../Modal/Modal';
+import Helpers from '../../utils/helpers';
 
 class Calendar extends Component {
   constructor (props) {
@@ -25,16 +26,51 @@ class Calendar extends Component {
     ReactBigCalendar.momentLocalizer(moment);
   }
 
+  componentWillMount() {
+    Helpers.loadScript("https://apis.google.com/js/client.js");
+  }
+
   componentDidMount() {
     this.props.eventsList.loaded === false && browserHistory.push('/');
   }
+
+  handleFormSubmit = (e) => {
+    var attendeesEmails = document.getElementById('event-attendees').value.match(/[^,; ]+/g);
+    var attendees = [];
+    var reForEmail = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+    attendeesEmails.map(function(email) {
+      reForEmail.test(email) && attendees.push({'email': email});
+    });
+
+    var event = {
+      'summary': document.getElementById('event-name').value,
+      'start': {
+        'dateTime': document.getElementById('event-start-date').value
+      },
+      'end': {
+        'dateTime': document.getElementById('event-end-date').value
+      },
+      'attendees': attendees
+    };
+
+    var request = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': event,
+      'sendNotifications': true
+    });
+
+    request.execute(function(event) {
+      //alert('Event created successfully!');
+    });
+    e.preventDefault();
+  };
 
   handleDateClick = (slotInfo) => {
     this.setState({
       isEventInviteVisible : true,
       selectedDateData : {
-        start : moment(slotInfo.start).format("dddd, MMMM Do YYYY"),
-        end : moment(slotInfo.end).format("dddd, MMMM Do YYYY")
+        start : slotInfo.start,
+        end : slotInfo.end
       }
     });
   };
@@ -75,13 +111,15 @@ class Calendar extends Component {
         <Modal show={this.state.isEventInviteVisible} onClose={this.hideModal}>
           <div className="invite-container center-block">
             <h2>Create Event</h2>
-            <form id="invite-form" className="center-block">
+            <form id="invite-form"
+                  className="center-block"
+                  onSubmit={this.handleFormSubmit}>
               <label htmlFor="event-name">Event name</label>
-              <input type="text" name="event-name" id="event-name"/>
+              <input type="text" name="event-name" id="event-name" required/>
               <br/>
               <label htmlFor="event-start-date">Event start date</label>
               <input type="text"
-                     name="event-name"
+                     name="event-start-date"
                      id="event-start-date"
                      disabled
                      value={this.state.selectedDateData.start}
@@ -89,17 +127,18 @@ class Calendar extends Component {
               <br/>
               <label htmlFor="event-end-date">Event end date</label>
               <input type="text"
-                     name="event-name"
+                     name="event-end-date"
                      id="event-end-date"
                      disabled
                      value={this.state.selectedDateData.end}
               />
               <br/>
               <label htmlFor="event-attendees">Attendees' emails</label>
-              <textarea id="event-attendees"></textarea>
+              <textarea id="event-attendees" required></textarea>
               <i>Note: Use comma separated emails for inviting multiple people.</i>
               <br/>
               <input type="submit"
+                     name="submit"
                      value="Send Invite"
                      className="btn btn-primary"/>
             </form>
