@@ -94,7 +94,7 @@ class Login extends Component {
       <div className="center-block">
         <h1>Login to start inviting people now</h1>
         <div>
-          <button className="btn google_btn" onClick={handleAuthClick}>
+          <button className="btn google-btn" onClick={handleAuthClick}>
             Continue with Google
           </button>
         </div>
