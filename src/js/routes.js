@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, IndexRoute, Redirect} from 'react-router';
+import {Route, IndexRedirect, Redirect} from 'react-router';
 
 import CalendarApp from './containers/CalendarApp/CalendarApp';
 import Login from './components/Login/Login';
@@ -8,9 +8,10 @@ import NotFoundView from './views/NotFoundView/NotFoundView';
 
 export default (
   <Route path="/" component={CalendarApp}>
-    <IndexRoute component={Login}/>
-    <Route path="events" component={Calendar}/>
-    <Route path="404" component={NotFoundView}/>
-    <Redirect from="*" to="404"/>
+    <IndexRedirect to="google-calendar-invite-app"/>
+    <Route path="google-calendar-invite-app" component={Login}/>
+    <Route path="google-calendar-invite-app/events" component={Calendar}/>
+    <Route path="google-calendar-invite-app/404" component={NotFoundView}/>
+    <Redirect from="*" to="google-calendar-invite-app/404"/>
   </Route>
 );

@@ -31,7 +31,7 @@ class Calendar extends Component {
   }
 
   componentDidMount() {
-    this.props.eventsList.loaded === false && browserHistory.push('/');
+    this.props.eventsList.loaded === false && browserHistory.push('/google-calendar-invite-app');
   }
 
   handleFormSubmit = (e) => {

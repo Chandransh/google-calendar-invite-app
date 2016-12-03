@@ -71,7 +71,7 @@ class Login extends Component {
 
         if (events.length > 0) {
           EventsList.updateState(events);
-          browserHistory.push('/events');
+          browserHistory.push('/google-calendar-invite-app/events');
         } else {
           appendPre('No upcoming events found.');
         }
